@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire de livre</title>
+    <style>
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulaire de livre</h1>
+    <form id="livreForm">
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" required><br><br>
+        
+        <label for="auteur">Auteur :</label>
+        <input type="text" id="auteur" required><br><br>
+        
+        <label for="isbn">ISBN :</label>
+        <input type="text" id="isbn" required><br><br>
+        
+        <label for="editeur">Éditeur :</label>
+        <input type="text" id="editeur" required><br><br>
+        
+        <label for="datePublication">Date de publication :</label>
+        <input type="date" id="datePublication" required><br><br>
+        
+        <label for="genre">Genre :</label>
+        <input type="text" id="genre" required><br><br>
+        
+        <label for="resume">Résumé :</label>
+        <textarea id="resume" required></textarea><br><br>
+        
+        <label for="langue">Langue :</label>
+        <input type="text" id="langue" required><br><br>
+        
+        <label for="prix">Prix :</label>
+        <input type="number" id="prix" required><br><br>
+        
+        <label for="nombrePages">Nombre de pages :</label>
+        <input type="number" id="nombrePages" required><br><br>
+        
+        <label for="couverture">Couverture :</label>
+        <textarea id="couverture" required></textarea><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="resultat"></div>
+    
+    <script>
+        document.getElementById('livreForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêcher le rechargement de la page
+            
+            // Récupérer les valeurs des champs du formulaire
+            var titre = document.getElementById('titre').value;
+            var auteur = document.getElementById('auteur').value;
+            var isbn = document.getElementById('isbn').value;
+            var editeur = document.getElementById('editeur').value;
+            var datePublication = document.getElementById('datePublication').value;
+            var genre = document.getElementById('genre').value;
+            var resume = document.getElementById('resume').value;
+            var langue = document.getElementById('langue').value;
+            var prix = document.getElementById('prix').value;
+            var nombrePages = document.getElementById('nombrePages').value;
+            var couverture = document.getElementById('couverture').value;
+            
+            // Créer le texte au format SQL
+            var sqlText = "INSERT INTO Livre (Titre, Auteur, ISBN, Editeur, DatePublication, Genre, Resume, Langue, Prix, NombrePages, Couverture) VALUES ('" +
+                          titre + "', '" + auteur + "', '" + isbn + "', '" + editeur + "', '" +
+                          datePublication + "', '" + genre + "', '" + resume + "', '" + langue +
+                          "', " + prix + ", " + nombrePages + ", '" + couverture + "');";
+            
+            // Afficher le texte SQL
+            document.getElementById('resultat').innerText = sqlText;
+        });
+    </script>
+</body>
+</html>

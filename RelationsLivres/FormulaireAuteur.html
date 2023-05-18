@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire d'auteur</title>
+    <style>
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulaire d'auteur</h1>
+    <form id="auteurForm">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" required><br><br>
+        
+        <label for="dateNaissance">Date de naissance :</label>
+        <input type="date" id="dateNaissance" required><br><br>
+        
+        <label for="lieuNaissance">Lieu de naissance :</label>
+        <input type="text" id="lieuNaissance" required><br><br>
+        
+        <label for="biographie">Biographie :</label>
+        <textarea id="biographie" required></textarea><br><br>
+        
+        <label for="genreLitteraire">Genre littéraire :</label>
+        <input type="text" id="genreLitteraire" required><br><br>
+        
+        <label for="styleEcriture">Style d'écriture :</label>
+        <input type="text" id="styleEcriture" required><br><br>
+        
+        <label for="prixDistinctions">Prix et distinctions :</label>
+        <textarea id="prixDistinctions" required></textarea><br><br>
+        
+        <label for="influenceLitteraire">Influence littéraire :</label>
+        <input type="text" id="influenceLitteraire" required><br><br>
+        
+        <label for="projetsFuturs">Projets futurs :</label>
+        <textarea id="projetsFuturs" required></textarea><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="resultat"></div>
+    
+    <script>
+        document.getElementById('auteurForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêcher le rechargement de la page
+            
+            // Récupérer les valeurs des champs du formulaire
+            var nom = document.getElementById('nom').value;
+            var dateNaissance = document.getElementById('dateNaissance').value;
+            var lieuNaissance = document.getElementById('lieuNaissance').value;
+            var biographie = document.getElementById('biographie').value;
+            var genreLitteraire = document.getElementById('genreLitteraire').value;
+            var styleEcriture = document.getElementById('styleEcriture').value;
+            var prixDistinctions = document.getElementById('prixDistinctions').value;
+            var influenceLitteraire = document.getElementById('influenceLitteraire').value;
+            var projetsFuturs = document.getElementById('projetsFuturs').value;
+            
+            // Créer le texte au format SQL
+            var sqlText = "INSERT INTO Auteur (Nom, DateNaissance, LieuNaissance, Biographie, GenreLitteraire, StyleEcriture, PrixDistinctions, InfluenceLitteraire, ProjetsFuturs) VALUES ('" +
+                          nom + "', '" + dateNaissance + "', '" + lieuNaissance + "', '" + biographie + "', '" +
+                          genreLitteraire + "', '" + styleEcriture + "', '" + prixDistinctions + "', '" + influenceLitteraire + "', '" +
+                          projetsFuturs + "');";
+            
+            // Afficher le texte SQL
+            document.getElementById('resultat').innerText = sqlText;
+        });
+    </script>
+</body>
+</html>

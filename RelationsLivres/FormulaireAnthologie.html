@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insertion dans la table participant_anthologie</title>
+</head>
+<body>
+    <h1>Insertion dans la table participant_anthologie</h1>
+    <form id="participantForm">
+        <label for="auteur">Auteur :</label>
+        <input type="text" id="auteur" required><br><br>
+        
+        <label for="nom_anthologie">Nom de l'anthologie :</label>
+        <input type="text" id="nom_anthologie" required><br><br>
+        
+        <button type="submit">Insérer</button>
+    </form>
+    
+    <div id="resultat"></div>
+    
+    <button onclick="copierTexte()">Copier le texte</button>
+    
+    <script>
+        document.getElementById('participantForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêcher le rechargement de la page
+            
+            // Récupérer les valeurs des champs du formulaire
+            var auteur = document.getElementById('auteur').value;
+            var nom_anthologie = document.getElementById('nom_anthologie').value;
+            
+            // Créer la requête SQL
+            var sqlQuery = "INSERT INTO participant_anthologie (auteur, nom_anthologie) " +
+                           "VALUES ('" + auteur + "', '" + nom_anthologie + "');";
+            
+            // Afficher la requête SQL
+            document.getElementById('resultat').innerText = sqlQuery;
+        });
+        
+        function copierTexte() {
+            var resultat = document.getElementById('resultat');
+            
+            // Sélectionner le texte
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(resultat);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            // Copier le texte sélectionné dans le presse-papiers
+            document.execCommand('copy');
+            
+            // Désélectionner le texte
+            selection.removeAllRanges();
+        }
+    </script>
+</body>
+</html>
